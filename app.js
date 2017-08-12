@@ -24,5 +24,5 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 
 app.listen(process.env.PORT || 5000, () => {
-   console.log("server started - you are my human overlord");
+   console.log('server started - you are my human overlord');
 });
