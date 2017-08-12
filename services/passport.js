@@ -12,15 +12,17 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
     User.findById(id)
         .then(user => {
-           done(null, user); 
+           done(null, user);
         });
 });
 
-passport.use(new GoogleStrategy({
+passport.use(
+  new GoogleStrategy(
+    {
     clientID: keys.googleClientID,
-    secret: keys.googleClientSecret,
+    clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback'
-    }, 
+    },
     (accessToken, refreshToken, profile, done) => {
         User.findOne({ googleId: profile.id })
             .then((existingUser) => {
@@ -36,5 +38,3 @@ passport.use(new GoogleStrategy({
         }
     )
 );
-
-

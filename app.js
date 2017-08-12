@@ -14,17 +14,15 @@ const app = express();
 app.use(
     cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: [keys.cookieKey] 
+        keys: [keys.cookieKey]
         })
     );
-    
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 
-app.listen(8081, process.env.IP, () => {
+app.listen(process.env.PORT || 5000, () => {
    console.log("server started - you are my human overlord");
 });
-
-
